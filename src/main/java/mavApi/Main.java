@@ -144,7 +144,7 @@ public class Main {
 				
 
 				String sqlDBInsert = "INSERT INTO Api (" +" web_pages,"+ " state_province," + " alpha_two_code ," +"name,"+"country,"+"domains "+")VALUES("
-				+"'"+x.getWeb_pages()+"','"+x.getState_province()+"','"+x.getAlpha_two_code()+"','"+x.getName()+"','"+x.getCountry()+"','"+x.getDomains()+"')";
+				+"'"+x.getWeb_pages()[0]+"','"+x.getState_province()+"','"+x.getAlpha_two_code()+"','"+x.getName()+"','"+x.getCountry()+"','"+x.getDomains()[0]+"')";
 
 				Connection Insertconn = null;
 				
