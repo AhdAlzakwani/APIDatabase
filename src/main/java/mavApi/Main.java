@@ -16,7 +16,8 @@ import com.google.gson.Gson;
 public class Main {
 
 	public static void main(String[] args) {
-	
+		Api api = new Api();
+
 		Scanner scannerr = new Scanner(System.in);
 		boolean menuExit = true;
 		while(menuExit) {
@@ -175,17 +176,22 @@ public class Main {
 				System.out.println(" Enter id ?");
 				long id = scannerr.nextInt();
 
-					Api api = new Api();
 					api.selectById(id);
 					
 				
 				break;
 				
 			case 5:
+				System.out.println(" Enter id ?");
+				long updateid = scannerr.nextInt();
+				api.UpdateById(updateid);
 				
 				break;
 				
 			case 6:
+				System.out.println(" Enter id to be deleted ?");
+				  int deleteId = scannerr.nextInt();
+				  api.deleteById(deleteId);
 				
 				break;
 			

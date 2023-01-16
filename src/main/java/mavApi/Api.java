@@ -55,6 +55,74 @@ public class Api {
 
 	}
 
+	public static void UpdateById(Long number) {
+		try{
+		Scanner scanner = new Scanner(System.in);
+		String selectUrl = "jdbc:sqlserver://localhost:1433;databaseName=ApiTable;encrypt=true;trustServerCertificate=true";
+		String selectUser = "sa";
+		String selectPass = "root";
+		System.out.println(" Enter country to update ?");
+		String country = scanner.next();
+		System.out.println(" Enter domains to update ?");
+		String domains = scanner.next();
+		String SelectSqlDB = "Update Api SET country='"+country+"',domains='"+domains+"'where id=" + number;
+		Connection conn = null;
+
+		Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+		DriverManager.registerDriver(driver);
+		conn = DriverManager.getConnection(selectUrl, selectUser, selectPass);
+
+		Statement st = conn.createStatement();
+
+		int m = st.executeUpdate(SelectSqlDB);
+
+		if (m >= 1) {
+			System.out.println("Values updated in given Table...");
+
+		} else {
+			System.out.println("Values already updated in given database...");
+		}
+
+		conn.close();
+		}
+
+		catch (Exception ex) {
+			System.err.println(ex);
+		}
+
+	}
+	
+	public static void deleteById(long id) {
+		Scanner scanner = new Scanner(System.in);
+		String url = "jdbc:sqlserver://localhost:1433;databaseName=ApiTable;encrypt=true;trustServerCertificate=true";
+		String user = "sa";
+		String pass = "root";
+		
+		String sqlDB = "delete from Api where id ="+id;
+		Connection conn = null;
+	try {
+		Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+		DriverManager.registerDriver(driver);
+		conn = DriverManager.getConnection(url, user, pass);
+
+		Statement st = conn.createStatement();
+
+		int m = st.executeUpdate(sqlDB);
+
+		if (m >= 1) {
+			System.out.println("Row Deleted in given Table...");
+
+		} else {
+			System.out.println(" Row already Deleted in given database...");
+		}
+
+		conn.close();
+		  
+
+	} catch (Exception ex) {
+		System.err.println(ex);
+	}
+	}	
 	public String getState_province() {
 		return state_province;
 	}
