@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 import java.util.Scanner;
@@ -19,9 +20,12 @@ public class Main {
 		Scanner scannerr = new Scanner(System.in);
 		boolean menuExit = true;
 		while(menuExit) {
-			System.out.println("Fetch API AND DISPLAY" );
-			System.out.println("CREATE TABLE IN DATABASE " );
-			System.out.println("INSERT INTO TABLE " );
+			System.out.println("1- Fetch API AND DISPLAY" );
+			System.out.println("2- CREATE TABLE IN DATABASE " );
+			System.out.println("3- INSERT INTO TABLE " );
+			System.out.println("4- READE FROM TABLE " );
+			System.out.println("5- UPDATE FROM TABLE " );
+			System.out.println("6- DELETE FROM TABLE " );
 			int option = scannerr.nextInt();
 			switch(option) {
 			
@@ -44,7 +48,7 @@ public class Main {
 							apiInformation.append(scanner.nextLine());
 						}
 						scanner.close();
-//					System.out.println(apiInformation);
+					System.out.println(apiInformation);
 						Gson gson = new Gson();
 
 
@@ -134,15 +138,7 @@ public class Main {
 
 				Api[] apiResult = gson.fromJson(apiInformation.toString(), Api[].class);
 				for (Api x : apiResult) {
-				String[] Web_pages = x.getWeb_pages();
-				String state_province = x.getState_province();
-				String alpha_two_code = x.getAlpha_two_code();
-				String name = x.getName();
-				String country = x.getCountry();
-				String[] domains= x.getDomains(); 
-				
-				
-
+	
 				String sqlDBInsert = "INSERT INTO Api (" +" web_pages,"+ " state_province," + " alpha_two_code ," +"name,"+"country,"+"domains "+")VALUES("
 				+"'"+x.getWeb_pages()[0]+"','"+x.getState_province()+"','"+x.getAlpha_two_code()+"','"+x.getName()+"','"+x.getCountry()+"','"+x.getDomains()[0]+"')";
 
@@ -173,6 +169,24 @@ public class Main {
 					System.err.println(ex);
 				}
 	
+				break;
+				
+			case 4:
+				System.out.println(" Enter id ?");
+				long id = scannerr.nextInt();
+
+					Api api = new Api();
+					api.selectById(id);
+					
+				
+				break;
+				
+			case 5:
+				
+				break;
+				
+			case 6:
+				
 				break;
 			
 			
